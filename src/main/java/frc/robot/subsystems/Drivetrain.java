@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -27,6 +29,8 @@ public class Drivetrain extends Subsystem {
   public double BlEncoder;
   public double BrEncoder;
 
+  public static double deadZone = 0.05;
+
   public Drivetrain(int flid, int frid, int blid, int brid) {
 
     Fl = new WPI_TalonSRX(flid);
@@ -36,13 +40,36 @@ public class Drivetrain extends Subsystem {
 
   }
 
-  public static void Drive() {
+  public static void Drive(Joystick driver1, Joystick driver2) {
 
-    if (1 == 1) {
-      Fl.set(0);
-      Fr.set(0);
-      Bl.set(0);
-      Br.set(0);
+    if (driver1.getY() > 0 + deadZone || driver1.getY() < 0 - deadZone) {
+
+      Fl.set(driver1.getY());
+      Fr.set(driver1.getY());
+      Bl.set(driver1.getY());
+      Br.set(driver1.getY());
+
+      if (driver2.getX() < 0 - deadZone || driver2.getX() > 0 + deadZone) {
+
+        if (driver2.getX() < 0) {
+
+          Fr.set(driver2.getX());
+          Br.set(driver2.getX());
+       /* Fl.set(-driver2.getX());
+        * Bl.set(-driver2.getX());
+        */ 
+
+        }
+        if (driver2.getX() > 0 ) {
+
+          Fl.set(driver2.getX());
+          Bl.set(driver2.getX());
+       /* Fr.set(-driver2.getX());
+        * Br.set(-driver2.getX());
+        */
+        }
+
+      }
     }
     /* else if () {
       Fl.set(0);
