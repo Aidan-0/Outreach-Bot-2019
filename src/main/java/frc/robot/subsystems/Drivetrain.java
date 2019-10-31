@@ -50,7 +50,7 @@ public class Drivetrain extends Subsystem {
       Br.set(driver1.getY());
 
       if (driver2.getX() < 0 - deadZone || driver2.getX() > 0 + deadZone) {
-
+//:)
         if (driver2.getX() < 0) {
 
           Fr.set(driver2.getX());
