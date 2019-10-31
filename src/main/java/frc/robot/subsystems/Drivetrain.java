@@ -45,31 +45,13 @@ public class Drivetrain extends Subsystem {
     if (driver1.getY() > 0 + deadZone || driver1.getY() < 0 - deadZone) {
 
       Fl.set(driver1.getY());
-      Fr.set(driver1.getY());
       Bl.set(driver1.getY());
-      Br.set(driver1.getY());
 
-      if (driver2.getX() < 0 - deadZone || driver2.getX() > 0 + deadZone) {
-//:)
-        if (driver2.getX() < 0) {
+    }
+    if (driver2.getY() > 0 + deadZone || driver2.getY() < 0 - deadZone) {
+      Fr.set(driver2.getY());
+      Br.set(driver2.getY());
 
-          Fr.set(driver2.getX());
-          Br.set(driver2.getX());
-       /* Fl.set(-driver2.getX());
-        * Bl.set(-driver2.getX());
-        */ 
-
-        }
-        if (driver2.getX() > 0 ) {
-
-          Fl.set(driver2.getX());
-          Bl.set(driver2.getX());
-       /* Fr.set(-driver2.getX());
-        * Br.set(-driver2.getX());
-        */
-        }
-
-      }
     }
     /* else if () {
       Fl.set(0);
